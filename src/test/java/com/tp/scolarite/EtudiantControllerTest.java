@@ -10,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class EtudiantControllerTest {
@@ -29,6 +31,24 @@ class EtudiantControllerTest {
 
         assertEquals(1, resultat.size());
         assertEquals("Mballa", resultat.get(0).getNom());
+    }
+
+    @Test
+    void trouverRetourneLEtudiantExistant() {
+        when(repository.findById(1L))
+            .thenReturn(Optional.of(new Etudiant("Mballa", "Jean", "jean@mail.cm")));
+
+        ResponseEntity<Etudiant> reponse = controller.trouver(1L);
+
+        assertEquals(200, reponse.getStatusCode().value());
+        assertEquals("Mballa", reponse.getBody().getNom());
+    }
+
+    @Test
+    void trouverRetourne404SiInconnu() {
+        when(repository.findById(99L)).thenReturn(Optional.empty());
+
+        assertEquals(404, controller.trouver(99L).getStatusCode().value());
     }
 
     @Test

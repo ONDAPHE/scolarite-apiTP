@@ -14,6 +14,15 @@ public class Etudiant {
     private String nom;
     private String prenom;
     private String email;
+    private String filiere;
+
+    public String getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(String filiere) {
+        this.filiere = filiere;
+    }
 
     public Etudiant() {
     }
