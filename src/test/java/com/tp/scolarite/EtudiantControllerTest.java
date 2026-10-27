@@ -27,6 +27,6 @@ class EtudiantControllerTest {
         List<Etudiant> resultat = controller.lister();
 
         assertEquals(1, resultat.size());
-        assertEquals("MAKA", resultat.get(0).getNom());
+        assertEquals("Mballa", resultat.get(0).getNom());
     }
 }
