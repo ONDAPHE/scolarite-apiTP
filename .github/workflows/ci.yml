@@ -18,7 +18,7 @@ jobs:
 
       - run: ./mvnw -B verify
 
-      - name: Résumé de couverture
+      - name: Résumé de couverture de test
         run: |
           awk -F"," '{ i += $4 + $5; c += $5 } END { printf "### Couverture JaCoCo : %.1f %%\n", 100*c/i }' target/site/jacoco/jacoco.csv >> "$GITHUB_STEP_SUMMARY"
 
